@@ -58,3 +58,11 @@ require("everforest").load()
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+
+-- highlight yanked text for 200ms using the "Visual" highlight group
+vim.cmd[[
+  augroup highlight_yank
+  autocmd!
+  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
+  augroup END
+]]
