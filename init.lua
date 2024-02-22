@@ -63,6 +63,6 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.cmd[[
   augroup highlight_yank
   autocmd!
-  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
+  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=200})
   augroup END
 ]]
