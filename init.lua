@@ -18,43 +18,31 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  {
-    "neanias/everforest-nvim",
-    version = false,
-    lazy = false,
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      require("everforest").setup({
-        background="hard",
-        ui_contrast = "high",
-        colours_override = function(palette)
-          palette.bg0 = "#1f2529"
-        end
-      })
-    end
-  },
   "neovim/nvim-lspconfig",
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
   {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     dependencies = "nvim-lua/plenary.nvim",
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function () 
-      local configs = require("nvim-treesitter.configs")
-
-      configs.setup({
-        auto_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },  
-      })
-    end
-  },
+--  {
+--    "nvim-treesitter/nvim-treesitter",
+--    build = ":TSUpdate",
+--    config = function () 
+--      local configs = require("nvim-treesitter.configs")
+--
+--      configs.setup({
+--        auto_install = true,
+--        highlight = { enable = true },
+--        indent = { enable = true },  
+--      })
+--    end
+--  },
 })
-
-require("everforest").load()
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
